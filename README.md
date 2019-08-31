@@ -19,6 +19,8 @@ Module for Magisk with live wallpaper for Google Pixel (all generations). This m
 ![GitHub repo size](https://img.shields.io/github/repo-size/Magisk-Modules-Repo/pixel-complementary-live-wallpapers.svg)
 
 ### Changelog
+* __v2.0.3__
+  * Fixed security patch date
 * __v2.0.2__
   * Added resources for (all generations) Aug 2019
 * __v2.0.1__
