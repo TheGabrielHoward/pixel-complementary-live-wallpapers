@@ -150,7 +150,7 @@ on_install() {
     abort "   => Android version '"$RELEASE"' is not supported"
   fi
   
-  if [ $RELEASE == "9" ] && [ $RELEASE != "10" ]; then
+  if [ $RELEASE == "9" ] && [ $RELEASE = "10" ]; then
     RELEASE=$RELEASE/$SECURITY_PATCH_VERSION
   fi
 
