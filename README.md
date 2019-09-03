@@ -29,6 +29,8 @@ The script is divided into two parts:
 ![GitHub repo size](https://img.shields.io/github/repo-size/Magisk-Modules-Repo/pixel-complementary-live-wallpapers.svg)
 
 ### Changelog
+* __v2.1.1__
+  * Fixed installer
 * __v2.1.0__
   * Installer for Android 10
 * __v2.0.4__
