@@ -131,28 +131,29 @@ print_modname() {
 # Copy/extract your module files into $MODPATH in on_install.
 
 on_install() {
-  ui_print "Installing  Module"
+  ui_print "Installing  Module!"
 
   DEVICE=`getprop ro.product.device`
   RELEASE=`getprop ro.build.version.release`
   SECURITY_PATCH_VERSION=`getprop ro.build.version.security_patch`
 
-  ui_print "Performing compatibility check"
-  ui_print "Device is: "$DEVICE
-  ui_print "Android version is: "$RELEASE
-  ui_print "Security patch version is: "$SECURITY_PATCH_VERSION
+  ui_print "Performing compatibility check..."
+  ui_print "Device: "$DEVICE
+  ui_print "Android version: "$RELEASE
+  ui_print "Security patch version: "$SECURITY_PATCH_VERSION
 
   if [ $DEVICE != "sailfish" ] && [ $DEVICE != "marlin" ] && [ $DEVICE != "walleye" ] && [ $DEVICE != "taimen" ] && [ $DEVICE != "blueline" ] && [ $DEVICE != "crosshatch" ] && [ $DEVICE != "sargo" ] && [ $DEVICE != "bonito" ]; then
     abort "   => Device '"$DEVICE"' is not supported"
   fi
   
-  if [ $RELEASE != "9" ]; then
+  if [ $RELEASE != "9" ] && [ $RELEASE != "10" ]; then
     abort "   => Android version '"$RELEASE"' is not supported"
   fi
   
-  if [ $RELEASE == "9" ]; then
+  if [ $RELEASE == "9" ] && [ $RELEASE != "10" ]; then
     RELEASE=$RELEASE/$SECURITY_PATCH_VERSION
   fi
+
   ui_print "Your device is compatible. Continue with installation."
   
   # The following is the default implementation: extract $ZIPFILE/system to $MODPATH
@@ -164,19 +165,25 @@ case $DEVICE in
   wget -q --tries=10 --timeout=20 --spider https://google.com
 	if [[ $? -eq 0 ]]; then
 		ui_print "Successful connection, start downloading..."
+    ui_print "File downloading (1/6)..."
     	mkdir -p $TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017
-        wget -P $TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
-       	mkdir -p $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018
-       	wget -P $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/blueline/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
-        mkdir -p $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64
-        wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/WallpapersBReel2017.apk
-        wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
-        mkdir -p $TMPDIR/$RELEASE/blueline/WallpapersBReel2018
-        wget -P $TMPDIR/$RELEASE/blueline/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/blueline/WallpapersBReel2018/WallpapersBReel2018.apk
-        ui_print "Download complete."
+      wget -P $TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
+    ui_print "File downloading (2/6)..."
+      mkdir -p $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018
+      wget -P $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/blueline/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
+    ui_print "File downloading (3/6)..."
+      mkdir -p $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64
+      wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/WallpapersBReel2017.apk
+    ui_print "File downloading (4/6)..."
+      wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libgdx.so
+    ui_print "File downloading (5/6)..."
+      wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
+    ui_print "File downloading (6/6)..."
+      mkdir -p $TMPDIR/$RELEASE/blueline/WallpapersBReel2018
+      wget -P $TMPDIR/$RELEASE/blueline/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/blueline/WallpapersBReel2018/WallpapersBReel2018.apk
+    ui_print "Download complete."
 	else
-        abort "Internet connection is not available. Check the connection and try again."
+    abort "Internet connection is not available. Check the connection and try again."
 	fi
   APK_PATH_PX2_W=$TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
   APK_PATH_PX3_W=$TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
@@ -203,19 +210,25 @@ case $DEVICE in
   wget -q --tries=10 --timeout=20 --spider https://google.com
 	if [[ $? -eq 0 ]]; then
 		ui_print "Successful connection, start downloading..."
-    	mkdir -p $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017
-        wget -P $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
-       	mkdir -p $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018
-       	wget -P $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/crosshatch/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
-        mkdir -p $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64
-        wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/WallpapersBReel2017.apk
-        wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
-        mkdir -p $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018
-        wget -P $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/crosshatch/WallpapersBReel2018/WallpapersBReel2018.apk
-        ui_print "Download complete."
+    ui_print "File downloading (16)..."
+      mkdir -p $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017
+      wget -P $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
+    ui_print "File downloading (2/6)..."
+      mkdir -p $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018
+      wget -P $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/crosshatch/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
+    ui_print "File downloading (3/6)..."
+      mkdir -p $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64
+      wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/WallpapersBReel2017.apk
+    ui_print "File downloading (4/6)..."
+      wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libgdx.so
+    ui_print "File downloading (5/6)..."
+      wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
+    ui_print "File downloading (6/6)..."
+      mkdir -p $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018
+      wget -P $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/crosshatch/WallpapersBReel2018/WallpapersBReel2018.apk
+    ui_print "Download complete."
 	else
-        abort "Internet connection is not available. Check the connection and try again."
+    abort "Internet connection is not available. Check the connection and try again."
 	fi
   APK_PATH_PX2_W=$TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
   APK_PATH_PX3_W=$TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
@@ -242,21 +255,28 @@ case $DEVICE in
   wget -q --tries=10 --timeout=20 --spider https://google.com
 	if [[ $? -eq 0 ]]; then
 		ui_print "Successful connection, start downloading..."
+    ui_print "File downloading (1/7)..."
     	mkdir -p $TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt
-        wget -P $TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
-       	mkdir -p $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018
-       	wget -P $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/blueline/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
-        mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/WallpapersBReel.apk
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
-        mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersUsTwo/WallpapersUsTwo.apk
-        mkdir -p $TMPDIR/$RELEASE/blueline/WallpapersBReel2018
-        wget -P $TMPDIR/$RELEASE/blueline/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/blueline/WallpapersBReel2018/WallpapersBReel2018.apk
-        ui_print "Download complete."
+      wget -P $TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
+    ui_print "File downloading (2/7)..."
+      mkdir -p $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018
+      wget -P $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/blueline/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
+    ui_print "File downloading (3/7)..."
+      mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/WallpapersBReel.apk
+    ui_print "File downloading (4/7)..."
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libgdx.so
+    ui_print "File downloading (5/7)..."
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
+    ui_print "File downloading (6/7)..."  
+      mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersUsTwo/WallpapersUsTwo.apk
+    ui_print "File downloading (7/7)..."
+      mkdir -p $TMPDIR/$RELEASE/blueline/WallpapersBReel2018
+      wget -P $TMPDIR/$RELEASE/blueline/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/blueline/WallpapersBReel2018/WallpapersBReel2018.apk
+  ui_print "Download complete."
 	else
-        abort "Internet connection is not available. Check the connection and try again."
+    abort "Internet connection is not available. Check the connection and try again."
 	fi
   APK_PATH_PX1_W=$TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
   APK_PATH_PX3_W=$TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
@@ -272,7 +292,7 @@ case $DEVICE in
   cp -af $APK_PATH_PX3_W $MODPATH/system/app/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
   mkdir -p $MODPATH/system/app/WallpapersBReel/lib/arm64
   cp -af $LIB_PATH_PX1_D $MODPATH/system/app/WallpapersBReel/lib/arm64/libgdx.so
-  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
+  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
   cp -af $APK_PATH_PX1_LW1 $MODPATH/system/app/WallpapersBReel/WallpapersBReel.apk
   mkdir -p $MODPATH/system/app/WallpapersUsTwo
   cp -af $APK_PATH_PX1_LW2 $MODPATH/system/app/WallpapersUsTwo/WallpapersUsTwo.apk
@@ -286,21 +306,28 @@ case $DEVICE in
   wget -q --tries=10 --timeout=20 --spider https://google.com
 	if [[ $? -eq 0 ]]; then
 		ui_print "Successful connection, start downloading..."
+    ui_print "File downloading (1/7)..."
     	mkdir -p $TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt
-        wget -P $TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
-       	mkdir -p $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018
-       	wget -P $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/crosshatch/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
-        mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/WallpapersBReel.apk
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
-        mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersUsTwo
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersUsTwo/WallpapersUsTwo.apk
-        mkdir -p $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018
-        wget -P $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/crosshatch/WallpapersBReel2018/WallpapersBReel2018.apk
-        ui_print "Download complete."
+      wget -P $TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
+    ui_print "File downloading (2/7)..."
+      mkdir -p $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018
+      wget -P $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/crosshatch/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
+    ui_print "File downloading (3/7)..."
+      mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/WallpapersBReel.apk
+    ui_print "File downloading (4/7)..."
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libgdx.so
+    ui_print "File downloading (5/7)..."
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
+    ui_print "File downloading (6/7)..."
+      mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersUsTwo
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersUsTwo/WallpapersUsTwo.apk
+    ui_print "File downloading (7/7)..."
+      mkdir -p $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018
+      wget -P $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/crosshatch/WallpapersBReel2018/WallpapersBReel2018.apk
+    ui_print "Download complete."
 	else
-        abort "Internet connection is not available. Check the connection and try again."
+    abort "Internet connection is not available. Check the connection and try again."
 	fi
   APK_PATH_PX1_W=$TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
   APK_PATH_PX3_W=$TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
@@ -316,7 +343,7 @@ case $DEVICE in
   cp -af $APK_PATH_PX3_W $MODPATH/system/app/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
   mkdir -p $MODPATH/system/app/WallpapersBReel/lib/arm64
   cp -af $LIB_PATH_PX1_D $MODPATH/system/app/WallpapersBReel/lib/arm64/libgdx.so
-  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
+  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
   cp -af $APK_PATH_PX1_LW1 $MODPATH/system/app/WallpapersBReel/WallpapersBReel.apk
   mkdir -p $MODPATH/system/app/WallpapersUsTwo
   cp -af $APK_PATH_PX1_LW2 $MODPATH/system/app/WallpapersUsTwo/WallpapersUsTwo.apk
@@ -330,23 +357,32 @@ case $DEVICE in
   wget -q --tries=10 --timeout=20 --spider https://google.com
 	if [[ $? -eq 0 ]]; then
 		ui_print "Successful connection, start downloading..."
-    	mkdir -p $TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt
-        wget -P $TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
-       	mkdir -p $TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017
-        wget -P $TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
-        mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/WallpapersBReel.apk
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
-        mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersUsTwo/WallpapersUsTwo.apk
-        mkdir -p $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64
-        wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/WallpapersBReel2017.apk
-        wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
-        ui_print "Download complete."
+    ui_print "File downloading (1/9)..."
+      mkdir -p $TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt
+      wget -P $TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
+    ui_print "File downloading (2/9)..."
+      mkdir -p $TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017
+      wget -P $TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
+    ui_print "File downloading (3/9)..."
+      mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/WallpapersBReel.apk
+    ui_print "File downloading (4/9)..."
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libgdx.so
+    ui_print "File downloading (5/9)..."
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
+    ui_print "File downloading (6/9)..."
+      mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersUsTwo/WallpapersUsTwo.apk
+    ui_print "File downloading (7/9)..."
+      mkdir -p $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64
+      wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/WallpapersBReel2017.apk
+    ui_print "File downloading (8/9)..."
+      wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libgdx.so
+    ui_print "File downloading (9/9)..."
+      wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
+    ui_print "Download complete."
 	else
-        abort "Internet connection is not available. Check the connection and try again."
+    abort "Internet connection is not available. Check the connection and try again."
 	fi
   APK_PATH_PX1_W=$TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
   APK_PATH_PX2_W=$TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
@@ -364,7 +400,7 @@ case $DEVICE in
   cp -af $APK_PATH_PX2_W $MODPATH/system/app/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
   mkdir -p $MODPATH/system/app/WallpapersBReel/lib/arm64
   cp -af $LIB_PATH_PX1_D $MODPATH/system/app/WallpapersBReel/lib/arm64/libgdx.so
-  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
+  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
   cp -af $APK_PATH_PX1_LW1 $MODPATH/system/app/WallpapersBReel/WallpapersBReel.apk
   mkdir -p $MODPATH/system/app/WallpapersUsTwo
   cp -af $APK_PATH_PX1_LW2 $MODPATH/system/app/WallpapersUsTwo/WallpapersUsTwo.apk
@@ -380,23 +416,32 @@ case $DEVICE in
   wget -q --tries=10 --timeout=20 --spider https://google.com
 	if [[ $? -eq 0 ]]; then
 		ui_print "Successful connection, start downloading..."
+    ui_print "File downloading (1/9)..."
     	mkdir -p $TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt
-        wget -P $TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
-       	mkdir -p $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017
-        wget -P $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
-        mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/WallpapersBReel.apk
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
-        mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersUsTwo
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersUsTwo/WallpapersUsTwo.apk
-        mkdir -p $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64
-        wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/WallpapersBReel2017.apk
-        wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
-        ui_print "Download complete."
+      wget -P $TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
+    ui_print "File downloading (2/9)..."
+      mkdir -p $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017
+      wget -P $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
+    ui_print "File downloading (3/9)..."
+      mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/WallpapersBReel.apk
+    ui_print "File downloading (4/9)..."
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libgdx.so
+    ui_print "File downloading (5/9)..."
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
+    ui_print "File downloading (6/9)..."
+      mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersUsTwo
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersUsTwo/WallpapersUsTwo.apk
+    ui_print "File downloading (7/9)..."
+      mkdir -p $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64
+      wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/WallpapersBReel2017.apk
+    ui_print "File downloading (8/9)..."
+      wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libgdx.so
+    ui_print "File downloading (9/9)..."
+      wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
+    ui_print "Download complete."
 	else
-        abort "Internet connection is not available. Check the connection and try again."
+    abort "Internet connection is not available. Check the connection and try again."
 	fi
   APK_PATH_PX1_W=$TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
   APK_PATH_PX2_W=$TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
@@ -414,7 +459,7 @@ case $DEVICE in
   cp -af $APK_PATH_PX2_W $MODPATH/system/app/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
   mkdir -p $MODPATH/system/app/WallpapersBReel/lib/arm64
   cp -af $LIB_PATH_PX1_D $MODPATH/system/app/WallpapersBReel/lib/arm64/libgdx.so
-  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
+  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
   cp -af $APK_PATH_PX1_LW1 $MODPATH/system/app/WallpapersBReel/WallpapersBReel.apk
   mkdir -p $MODPATH/system/app/WallpapersUsTwo
   cp -af $APK_PATH_PX1_LW2 $MODPATH/system/app/WallpapersUsTwo/WallpapersUsTwo.apk
@@ -430,27 +475,38 @@ case $DEVICE in
   wget -q --tries=10 --timeout=20 --spider https://google.com
 	if [[ $? -eq 0 ]]; then
 		ui_print "Successful connection, start downloading..."
+    ui_print "File downloading (1/11)..."
     	mkdir -p $TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt
-        wget -P $TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
-       	mkdir -p $TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017
-        wget -P $TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
-        mkdir -p $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018
-       	wget -P $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/blueline/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
-        mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/WallpapersBReel.apk
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
-        mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo
-        wget -P $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/sailfish/WallpapersUsTwo/WallpapersUsTwo.apk
-        mkdir -p $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64
-        wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/WallpapersBReel2017.apk
-        wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
-        mkdir -p $TMPDIR/$RELEASE/blueline/WallpapersBReel2018
-        wget -P $TMPDIR/$RELEASE/blueline/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/blueline/WallpapersBReel2018/WallpapersBReel2018.apk
-        ui_print "Download complete."
+      wget -P $TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
+    ui_print "File downloading (2/11)..."
+      mkdir -p $TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017
+      wget -P $TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
+    ui_print "File downloading (3/11)..."
+      mkdir -p $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018
+      wget -P $TMPDIR/$RELEASE/blueline/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/blueline/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
+    ui_print "File downloading (4/11)..."
+      mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/WallpapersBReel.apk
+    ui_print "File downloading (5/11)..."
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libgdx.so
+    ui_print "File downloading (6/11)..."
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
+    ui_print "File downloading (7/11)..."
+      mkdir -p $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo
+      wget -P $TMPDIR/$RELEASE/sailfish/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/sailfish/WallpapersUsTwo/WallpapersUsTwo.apk
+    ui_print "File downloading (8/11)..."
+      mkdir -p $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64
+      wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/WallpapersBReel2017.apk
+    ui_print "File downloading (9/11)..."
+      wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libgdx.so
+    ui_print "File downloading (10/11)..."
+      wget -P $TMPDIR/$RELEASE/walleye/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/walleye/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
+    ui_print "File downloading (11/11)..."
+      mkdir -p $TMPDIR/$RELEASE/blueline/WallpapersBReel2018
+      wget -P $TMPDIR/$RELEASE/blueline/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/blueline/WallpapersBReel2018/WallpapersBReel2018.apk
+    ui_print "Download complete."
 	else
-        abort "Internet connection is not available. Check the connection and try again."
+    abort "Internet connection is not available. Check the connection and try again."
 	fi
   APK_PATH_PX1_W=$TMPDIR/$RELEASE/sailfish/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
   APK_PATH_PX2_W=$TMPDIR/$RELEASE/walleye/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
@@ -472,7 +528,7 @@ case $DEVICE in
   cp -af $APK_PATH_PX3_W $MODPATH/system/app/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
   mkdir -p $MODPATH/system/app/WallpapersBReel/lib/arm64
   cp -af $LIB_PATH_PX1_D $MODPATH/system/app/WallpapersBReel/lib/arm64/libgdx.so
-  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
+  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
   cp -af $APK_PATH_PX1_LW1 $MODPATH/system/app/WallpapersBReel/WallpapersBReel.apk
   mkdir -p $MODPATH/system/app/WallpapersUsTwo
   cp -af $APK_PATH_PX1_LW2 $MODPATH/system/app/WallpapersUsTwo/WallpapersUsTwo.apk
@@ -490,27 +546,38 @@ case $DEVICE in
   wget -q --tries=10 --timeout=20 --spider https://google.com
 	if [[ $? -eq 0 ]]; then
 		ui_print "Successful connection, start downloading..."
+    ui_print "File downloading (1/11)..."
     	mkdir -p $TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt
-        wget -P $TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
-       	mkdir -p $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017
-        wget -P $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
-        mkdir -p $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018
-       	wget -P $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/crosshatch/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
-        mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/WallpapersBReel.apk
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
-        mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersUsTwo
-        wget -P $TMPDIR/$RELEASE/marlin/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/marlin/WallpapersUsTwo/WallpapersUsTwo.apk
-        mkdir -p $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64
-        wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/WallpapersBReel2017.apk
-        wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libgdx.so
-        wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
-        mkdir -p $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018
-        wget -P $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/9/$SECURITY_PATCH_VERSION/crosshatch/WallpapersBReel2018/WallpapersBReel2018.apk
-        ui_print "Download complete."
+      wget -P $TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
+    ui_print "File downloading (2/11)..."
+      mkdir -p $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017
+      wget -P $TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
+    ui_print "File downloading (3/11)..."
+      mkdir -p $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018
+      wget -P $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/crosshatch/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
+    ui_print "File downloading (4/11)..."
+      mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/WallpapersBReel.apk
+    ui_print "File downloading (5/11)..."
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libgdx.so
+    ui_print "File downloading (6/11)..."
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
+    ui_print "File downloading (7/11)..."
+      mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersUsTwo
+      wget -P $TMPDIR/$RELEASE/marlin/WallpapersUsTwo https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/marlin/WallpapersUsTwo/WallpapersUsTwo.apk
+    ui_print "File downloading (8/11)..."
+      mkdir -p $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64
+      wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/WallpapersBReel2017.apk
+    ui_print "File downloading (9/11)..."
+      wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libgdx.so
+    ui_print "File downloading (10/11)..."
+      wget -P $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/taimen/WallpapersBReel2017/lib/arm64/libwallpapers-breel-jni.so
+    ui_print "File downloading (11/11)..."
+      mkdir -p $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018
+      wget -P $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018 https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/crosshatch/WallpapersBReel2018/WallpapersBReel2018.apk
+    ui_print "Download complete."
 	else
-        abort "Internet connection is not available. Check the connection and try again."
+    abort "Internet connection is not available. Check the connection and try again."
 	fi
   APK_PATH_PX1_W=$TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
   APK_PATH_PX2_W=$TMPDIR/$RELEASE/taimen/NexusWallpapersStubPrebuilt2017/NexusWallpapersStubPrebuilt2017.apk
@@ -532,7 +599,7 @@ case $DEVICE in
   cp -af $APK_PATH_PX3_W $MODPATH/system/app/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
   mkdir -p $MODPATH/system/app/WallpapersBReel/lib/arm64
   cp -af $LIB_PATH_PX1_D $MODPATH/system/app/WallpapersBReel/lib/arm64/libgdx.so
-  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libwallpapers-breel-jni.so
+  cp -af $LIB_PATH_PX1_B $MODPATH/system/app/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
   cp -af $APK_PATH_PX1_LW1 $MODPATH/system/app/WallpapersBReel/WallpapersBReel.apk
   mkdir -p $MODPATH/system/app/WallpapersUsTwo
   cp -af $APK_PATH_PX1_LW2 $MODPATH/system/app/WallpapersUsTwo/WallpapersUsTwo.apk
@@ -548,7 +615,6 @@ case $DEVICE in
   ui_print "Unsupported device."
   ;;
 esac
-
 }
 
 # Only some special files require specific permissions
