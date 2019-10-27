@@ -10,15 +10,15 @@ Module for Magisk with live wallpaper for Google Pixel (all generations). This m
 
  * [![Android Pie](https://img.shields.io/badge/Android-9-blue.svg)](https://www.android.com/versions/pie-9-0/) [![Android Q](https://img.shields.io/badge/Android-10-blue.svg)](https://www.android.com/android-10/)
 
- * [![Android Security Bulletins](https://img.shields.io/badge/2019%2008%2001-patch%20security-blue.svg)](https://source.android.com/security/bulletin) [![Android Security Bulletins](https://img.shields.io/badge/2019%2009%2005-patch%20security-blue.svg)](https://source.android.com/security/bulletin)
+ * [![Android Security Bulletins](https://img.shields.io/badge/2019%2008%2001-patch%20security-blue.svg)](https://source.android.com/security/bulletin) [![Android Security Bulletins](https://img.shields.io/badge/2019%2009%2005-patch%20security-blue.svg)](https://source.android.com/security/bulletin) [![Android Security Bulletins](https://img.shields.io/badge/2019%2010%2006-patch%20security-blue.svg)](https://source.android.com/security/bulletin)
 
  * [![Magisk](https://img.shields.io/badge/Magisk-18%2B-blue.svg)](https://forum.xda-developers.com/apps/magisk/official-magisk-v7-universal-systemless-t3473445) [![Magisk Manager](https://img.shields.io/badge/Magisk%20Manager-7.1.0%2B-blue.svg)](https://forum.xda-developers.com/apps/magisk/official-magisk-v7-universal-systemless-t3473445)
 
 ### Features
- * NexusWallpapersStubPrebuilt and WallpapersBReel, WallpapersUsTwo for Google Pixel 2 and 3 gen
- * NexusWallpapersStubPrebuilt2017 and WallpapersBReel2017 for Google Pixel 1 and 3 gen
- * NexusWallpapersStubPrebuilt2018 and WallpapersBReel2018 for Google Pixel 1 and 2 gen
- * NexusWallpapersStubPrebuilt and WallpapersBReel, WallpapersUsTwo as well as NexusWallpapersStubPrebuilt2018 and WallpapersBReel2018 for Google Pixel 3a gen
+ * NexusWallpapersStubPrebuilt and WallpapersBReel, WallpapersUsTwo for Google Pixel 2/3/3a/4 gen
+ * NexusWallpapersStubPrebuilt2017 and WallpapersBReel2017 for Google Pixel 1/3/3a/4 gen
+ * NexusWallpapersStubPrebuilt2018 and WallpapersBReel2018 for Google Pixel 1/2/3a/4 gen
+ * NexusWallpapersStubPrebuilt2019 and WallpapersBReel2019 for Google Pixel 1/2/3/3a gen
 
 ### Installation process
 The script is divided into two parts:
@@ -29,6 +29,12 @@ The script is divided into two parts:
 ![GitHub repo size](https://img.shields.io/github/repo-size/Magisk-Modules-Repo/pixel-complementary-live-wallpapers.svg)
 
 ### Changelog
+* __v3.0.2__
+  * Updated Installer
+  * Updated resources for (all generations) Aug 2019/Sep 2019"
+* __v3.0.1__
+  * Added resources from Pixel 4/Pixel 4 XL
+  * Added resources for (all generations) Oct 2019
 * __v3.0__
   * Added resources for (all generations) Sep 2019
   * Deleted old cloud resources for months: April, May, June, July

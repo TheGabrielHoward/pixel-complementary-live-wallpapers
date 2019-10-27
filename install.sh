@@ -142,7 +142,7 @@ on_install() {
   ui_print "Android version: "$RELEASE
   ui_print "Security patch version: "$SECURITY_PATCH_VERSION
 
-  if [ $DEVICE != "sailfish" ] && [ $DEVICE != "marlin" ] && [ $DEVICE != "walleye" ] && [ $DEVICE != "taimen" ] && [ $DEVICE != "blueline" ] && [ $DEVICE != "crosshatch" ] && [ $DEVICE != "sargo" ] && [ $DEVICE != "bonito" ]; then
+  if [ $DEVICE != "sailfish" ] && [ $DEVICE != "marlin" ] && [ $DEVICE != "walleye" ] && [ $DEVICE != "taimen" ] && [ $DEVICE != "blueline" ] && [ $DEVICE != "crosshatch" ] && [ $DEVICE != "sargo" ] && [ $DEVICE != "bonito" ] && [ $DEVICE != "flame" ] && [ $DEVICE != "coral" ]; then
     abort "   => Device '"$DEVICE"' is not supported"
   fi
   
@@ -163,11 +163,11 @@ case $DEVICE in
     case $RELEASE in
       9)
         unzip -oq "$ZIPFILE" 'device/9/sailfish.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/9/.sh
+        . $TMPDIR/device/9/sailfish.sh
       ;;
       10)
         unzip -oq "$ZIPFILE" 'device/10/sailfish.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/10/.sh
+        . $TMPDIR/device/10/sailfish.sh
       ;;
       *)
         ui_print "Your device is compatible. Continue with installation."
@@ -178,11 +178,11 @@ case $DEVICE in
     case $RELEASE in
       9)
         unzip -oq "$ZIPFILE" 'device/9/marlin.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/9/.sh
+        . $TMPDIR/device/9/marlin.sh
       ;;
       10)
         unzip -oq "$ZIPFILE" 'device/10/marlin.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/10/.sh
+        . $TMPDIR/device/10/marlin.sh
       ;;
       *)
         ui_print "Your device is compatible. Continue with installation."
@@ -193,11 +193,11 @@ case $DEVICE in
     case $RELEASE in
       9)
         unzip -oq "$ZIPFILE" 'device/9/walleye.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/9/.sh
+        . $TMPDIR/device/9/walleye.sh
       ;;
       10)
         unzip -oq "$ZIPFILE" 'device/10/walleye.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/10/.sh
+        . $TMPDIR/device/10/walleye.sh
       ;;
       *)
         ui_print "Your device is compatible. Continue with installation."
@@ -208,11 +208,11 @@ case $DEVICE in
     case $RELEASE in
       9)
         unzip -oq "$ZIPFILE" 'device/9/taimen.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/9/.sh
+        . $TMPDIR/device/9/taimen.sh
       ;;
       10)
         unzip -oq "$ZIPFILE" 'device/10/taimen.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/10/.sh
+        . $TMPDIR/device/10/taimen.sh
       ;;
       *)
         ui_print "Your device is compatible. Continue with installation."
@@ -223,11 +223,11 @@ case $DEVICE in
     case $RELEASE in
       9)
         unzip -oq "$ZIPFILE" 'device/9/blueline.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/9/.sh
+        . $TMPDIR/device/9/blueline.sh
       ;;
       10)
         unzip -oq "$ZIPFILE" 'device/10/blueline.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/10/.sh
+        . $TMPDIR/device/10/blueline.sh
       ;;
       *)
         ui_print "Your device is compatible. Continue with installation."
@@ -238,11 +238,11 @@ case $DEVICE in
     case $RELEASE in
       9)
         unzip -oq "$ZIPFILE" 'device/9/crosshatch.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/9/.sh
+        . $TMPDIR/device/9/crosshatch.sh
       ;;
       10)
         unzip -oq "$ZIPFILE" 'device/10/crosshatch.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/10/.sh
+        . $TMPDIR/device/10/crosshatch.sh
       ;;
       *)
         ui_print "Your device is compatible. Continue with installation."
@@ -253,11 +253,11 @@ case $DEVICE in
     case $RELEASE in
       9)
         unzip -oq "$ZIPFILE" 'device/9/sargo.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/9/.sh
+        . $TMPDIR/device/9/sargo.sh
       ;;
       10)
         unzip -oq "$ZIPFILE" 'device/10/sargo.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/10/.sh
+        . $TMPDIR/device/10/sargo.sh
       ;;
       *)
         ui_print "Your device is compatible. Continue with installation."
@@ -268,11 +268,33 @@ case $DEVICE in
     case $RELEASE in
       9)
         unzip -oq "$ZIPFILE" 'device/9/bonito.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/9/.sh
+        . $TMPDIR/device/9/bonito.sh
       ;;
       10)
         unzip -oq "$ZIPFILE" 'device/10/bonito.sh' -d $TMPDIR >&2
-        . $TMPDIR/device/10/.sh
+        . $TMPDIR/device/10/bonito.sh
+      ;;
+      *)
+        ui_print "Your device is compatible. Continue with installation."
+      ;;
+    esac
+  ;;
+  flame)
+    case $RELEASE in
+      10)
+        unzip -oq "$ZIPFILE" 'device/10/flame.sh' -d $TMPDIR >&2
+        . $TMPDIR/device/10/flame.sh
+      ;;
+      *)
+        ui_print "Your device is compatible. Continue with installation."
+      ;;
+    esac
+  ;;
+  coral)
+    case $RELEASE in
+      10)
+        unzip -oq "$ZIPFILE" 'device/10/coral.sh' -d $TMPDIR >&2
+        . $TMPDIR/device/10/coral.sh
       ;;
       *)
         ui_print "Your device is compatible. Continue with installation."
