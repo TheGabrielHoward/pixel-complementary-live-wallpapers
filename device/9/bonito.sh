@@ -2,7 +2,7 @@
 
 ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEASE"'"
   ui_print "Check Internet connection..."
-  wget -q --tries=10 --timeout=20 --spider http://google.com
+  ping -q -w1 -c1 google.com &>/dev/null
 	if [[ $? -eq 0 ]]; then
 		ui_print "Successful connection, start downloading..."
     ui_print "File downloading (1/11)..."
