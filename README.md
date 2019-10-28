@@ -29,6 +29,8 @@ The script is divided into two parts:
 ![GitHub repo size](https://img.shields.io/github/repo-size/Magisk-Modules-Repo/pixel-complementary-live-wallpapers.svg)
 
 ### Changelog
+* __v3.0.3__
+  * Fixed installer
 * __v3.0.2__
   * Updated Installer
   * Updated resources for (all generations) Aug 2019/Sep 2019"
