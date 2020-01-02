@@ -10,12 +10,9 @@ Module for Magisk with live wallpaper for Google Pixel (all generations). This m
 
 ### Compatibility
  * [![Google Pixel Phones](https://img.shields.io/badge/Google%20Pixel-Android%20phones-blue.svg)](https://pixel.google.com/)
-
  * [![Android Pie](https://img.shields.io/badge/Android-9-blue.svg)](https://www.android.com/versions/pie-9-0/) [![Android Security Bulletins](https://img.shields.io/badge/2019%2008%2001-patch%20security-blue.svg)](https://source.android.com/security/bulletin)
- 
  * [![Android Q](https://img.shields.io/badge/Android-10-blue.svg)](https://www.android.com/android-10/) [![Android Security Bulletins](https://img.shields.io/badge/2019%2010%2006-patch%20security-blue.svg)](https://source.android.com/security/bulletin) [![Android Security Bulletins](https://img.shields.io/badge/2019%2011%2005-patch%20security-blue.svg)](https://source.android.com/security/bulletin) [![Android Security Bulletins](https://img.shields.io/badge/2019%2012%2005-patch%20security-blue.svg)](https://source.android.com/security/bulletin)
-
- * [![Magisk](https://img.shields.io/badge/Magisk-18%2B-blue.svg)](https://forum.xda-developers.com/apps/magisk/official-magisk-v7-universal-systemless-t3473445) [![Magisk Manager](https://img.shields.io/badge/Magisk%20Manager-7.1.0%2B-blue.svg)](https://forum.xda-developers.com/apps/magisk/official-magisk-v7-universal-systemless-t3473445)
+ * [![Magisk](https://img.shields.io/badge/Magisk-19%2B-blue.svg)](https://forum.xda-developers.com/apps/magisk/official-magisk-v7-universal-systemless-t3473445) [![Magisk Manager](https://img.shields.io/badge/Magisk%20Manager-7.1.0%2B-blue.svg)](https://forum.xda-developers.com/apps/magisk/official-magisk-v7-universal-systemless-t3473445)
 
 ### Features
  * NexusWallpapersStubPrebuilt and WallpapersBReel, WallpapersUsTwo for Google Pixel 2/3/3a/4 gen
@@ -32,6 +29,10 @@ The script is divided into two parts:
 ![GitHub repo size](https://img.shields.io/github/repo-size/Magisk-Modules-Repo/pixel-complementary-live-wallpapers.svg)
 
 ### Changelog
+* __v3.2__
+  * Updated Installer for Android 9
+* __v3.1.1__
+  * Updated to the new Magisk module template
 * __v3.1__
   * Updated Installer for Android 10
   * Thanks Zackptg5 for the curl lib
