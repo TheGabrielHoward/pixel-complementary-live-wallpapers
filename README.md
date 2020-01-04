@@ -1,5 +1,4 @@
 # Pixel Complementary Live Wallpapers
-![GitHub release](https://img.shields.io/github/release/Magisk-Modules-Repo/pixel-complementary-live-wallpapers.svg)
 ![Pixel Complementary Live Wallpapers](https://api.b-reel.com/assets/images/PixelWallpapers-content3.jpg)
 
 ### Donations
@@ -29,6 +28,8 @@ The script is divided into two parts:
 ![GitHub repo size](https://img.shields.io/github/repo-size/Magisk-Modules-Repo/pixel-complementary-live-wallpapers.svg)
 
 ### Changelog
+* __v3.2.1__
+  * Added resources for (all generations) Jan 2020
 * __v3.2__
   * Updated Installer for Android 9
 * __v3.1.1__
