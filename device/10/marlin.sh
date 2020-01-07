@@ -1,10 +1,8 @@
 #!/bin/bash
 
-unzip -o "$ZIPFILE" curl -d $TMPDIR
-cp -f $TMPDIR/curl $MODPATH/curl
 chmod 0755 $MODPATH/curl
 
-SECURITY_PATCH_VERSION_PIXEL=2019-12-05
+SECURITY_PATCH_VERSION_PIXEL=2020-01-01
 
 ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEASE"'"
   ui_print "Check Internet connection..."
