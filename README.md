@@ -1,4 +1,4 @@
-# Pixel Complementary Live Wallpapers
+# Pixel Complementary Live Wallpapers for Pixel devices
 ![Pixel Complementary Live Wallpapers](https://api.b-reel.com/assets/images/PixelWallpapers-content3.jpg)
 
 ### Donations
