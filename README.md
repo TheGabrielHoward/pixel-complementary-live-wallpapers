@@ -22,7 +22,7 @@ Module for Magisk with live wallpaper for Google Pixel (all generations). This m
 ### Installation process
 The script is divided into two parts:
 - The first part is the installation [script](https://github.com/Magisk-Modules-Repo/pixel-complementary-live-wallpapers/blob/master/install.sh). This part does not contain wallpaper. For each device, links to download wallpapers are registered. The script does not work without an Internet connection.
-- The second part is the cloud storage. This part is located on my open repository on [Gitlab](https://gitlab.com/igor-dyatlov/pixel-complementary-live-wallpapers).
+- The second part is the cloud storage. This part is located on my open repository on [Gitlab](https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers).
 
 ### Requirements
 ![GitHub repo size](https://img.shields.io/github/repo-size/Magisk-Modules-Repo/pixel-complementary-live-wallpapers.svg)
