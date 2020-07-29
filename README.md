@@ -1,8 +1,5 @@
 # Pixel Complementary Live Wallpapers for Pixel devices
-![Pixel Complementary Live Wallpapers](https://api.b-reel.com/assets/images/PixelWallpapers-content3.jpg)
-
-### Donations
-https://www.paypal.me/IgorDyatlov
+![Pixel Complementary Live Wallpapers](https://i.imgur.com/OMTQDY3.png)
 
 ### Module description
 Module for Magisk with live wallpaper for Google Pixel (all generations). This module is intended **only** for pixel devices from Google. The module adds missing live wallpapers from other generations of devices. All files from official firmware images.
@@ -21,7 +18,7 @@ Module for Magisk with live wallpaper for Google Pixel (all generations). This m
 
 ### Installation process
 The script is divided into two parts:
-- The first part is the installation [script](https://github.com/Magisk-Modules-Repo/pixel-complementary-live-wallpapers/blob/master/install.sh). This part does not contain wallpaper. For each device, links to download wallpapers are registered. The script does not work without an Internet connection.
+- The first part is the installation [script](https://github.com/thegabrielhoward/pixel-complementary-live-wallpapers/blob/master/install.sh). This part does not contain wallpaper. For each device, links to download wallpapers are registered. The script does not work without an Internet connection.
 - The second part is the cloud storage. This part is located on my open repository on [Gitlab](https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers).
 
 
