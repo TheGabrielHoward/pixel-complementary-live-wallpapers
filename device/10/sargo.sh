@@ -42,7 +42,7 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
 
     mkdir -p $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/lib/arm64 $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/WallpapersBReel2020a.apk -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/WallpapersBReel2020a.apk
-    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/lib/arm64/libgdx.so -o $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2020a/lib/arm64/libgdx.so
+    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/lib/arm64/libgdx.so -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/lib/arm64/libgdx.so
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex
 
@@ -75,9 +75,10 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
   WallpapersBReel2019vdex=$TMPDIR/$RELEASE/coral/WallpapersBReel2019/oat/arm64/WallpapersBReel2019.vdex
   WallpapersBReel2019=$TMPDIR/$RELEASE/coral/WallpapersBReel2019/WallpapersBReel2019.apk
 
-  #PixelLiveWallpaperPrebuiltodex=$TMPDIR/$RELEASE/coral/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.odex
-  #PixelLiveWallpaperPrebuiltvdex=$TMPDIR/$RELEASE/coral/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.vdex
-  #PixelLiveWallpaperPrebuilt=$TMPDIR/$RELEASE/coral/PixelLiveWallpaperPrebuilt/PixelLiveWallpaperPrebuilt.apk
+  WallpapersBReel2020alibgdx=$TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/lib/arm64/libgdx.so
+  WallpapersBReel2020aodex=$TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex
+  WallpapersBReel2020avdex=$TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex
+  WallpapersBReel2020a=$TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/WallpapersBReel2020a.apk
 
   ui_print "Installation..."
 
@@ -114,9 +115,10 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
   cp -af $WallpapersBReel2019vdex $MODPATH/system/product/app/WallpapersBReel2019/oat/arm64/WallpapersBReel2019.vdex
   cp -af $WallpapersBReel2019 $MODPATH/system/product/app/WallpapersBReel2019/WallpapersBReel2019.apk
 
-  #mkdir -p $MODPATH/system/product/priv-app/PixelLiveWallpaperPrebuilt/oat/arm64
-  #cp -af $WallpapersBReel2019odex $MODPATH/system/product/priv-app/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.odex
-  #cp -af $WallpapersBReel2019vdex $MODPATH/system/product/priv-app/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.vdex
-  #cp -af $PixelLiveWallpaperPrebuilt $MODPATH/system/product/priv-app/PixelLiveWallpaperPrebuilt/PixelLiveWallpaperPrebuilt.apk
+  mkdir -p $MODPATH/system/product/app/WallpapersBReel2020a/lib/arm64 $MODPATH/system/product/app/WallpapersBReel2020a/oat/arm64
+  cp -af $WallpapersBReel2020alibgdx $MODPATH/system/product/app/WallpapersBReel2020a/lib/arm64/libgdx.so
+  cp -af $WallpapersBReel2020aodex $MODPATH/system/product/app/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex
+  cp -af $WallpapersBReel2020avdex $MODPATH/system/product/app/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex
+  cp -af $WallpapersBReel2020a $MODPATH/system/product/app/WallpapersBReel2020a/WallpapersBReel2020a.apk
 
 ui_print "Installation complete."

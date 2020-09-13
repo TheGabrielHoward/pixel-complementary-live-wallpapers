@@ -36,7 +36,7 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
 
     mkdir -p $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/lib/arm64 $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/WallpapersBReel2020a.apk -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/WallpapersBReel2020a.apk
-    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/lib/arm64/libgdx.so -o $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2020a/lib/arm64/libgdx.so
+    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/lib/arm64/libgdx.so -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/lib/arm64/libgdx.so
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex
 
@@ -63,6 +63,11 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
   WallpapersBReel2018odex=$TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018/oat/arm64/WallpapersBReel2018.odex
   WallpapersBReel2018vdex=$TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018/oat/arm64/WallpapersBReel2018.vdex
   WallpapersBReel2018=$TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018/WallpapersBReel2018.apk
+
+  WallpapersBReel2020alibgdx=$TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/lib/arm64/libgdx.so
+  WallpapersBReel2020aodex=$TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex
+  WallpapersBReel2020avdex=$TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex
+  WallpapersBReel2020a=$TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/WallpapersBReel2020a.apk
 
   ui_print "Installation..."
 
@@ -92,5 +97,11 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
   cp -af $WallpapersBReel2018odex $MODPATH/system/product/app/WallpapersBReel2018/oat/arm64/WallpapersBReel2018.odex
   cp -af $WallpapersBReel2018vdex $MODPATH/system/product/app/WallpapersBReel2018/oat/arm64/WallpapersBReel2018.vdex
   cp -af $WallpapersBReel2018 $MODPATH/system/product/app/WallpapersBReel2018/WallpapersBReel2018.apk
+
+  mkdir -p $MODPATH/system/product/app/WallpapersBReel2020a/lib/arm64 $MODPATH/system/product/app/WallpapersBReel2020a/oat/arm64
+  cp -af $WallpapersBReel2020alibgdx $MODPATH/system/product/app/WallpapersBReel2020a/lib/arm64/libgdx.so
+  cp -af $WallpapersBReel2020aodex $MODPATH/system/product/app/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex
+  cp -af $WallpapersBReel2020avdex $MODPATH/system/product/app/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex
+  cp -af $WallpapersBReel2020a $MODPATH/system/product/app/WallpapersBReel2020a/WallpapersBReel2020a.apk
 
 ui_print "Installation complete."
