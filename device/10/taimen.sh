@@ -14,13 +14,14 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
     mkdir -p $TMPDIR/$RELEASE/coral/NexusWallpapersStubPrebuilt2019
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/coral/NexusWallpapersStubPrebuilt2019/NexusWallpapersStubPrebuilt2019.apk -o $TMPDIR/$RELEASE/coral/NexusWallpapersStubPrebuilt2019/NexusWallpapersStubPrebuilt2019.apk
 
+    # Live Walls
     mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/2019-10-06/marlin/WallpapersBReel/WallpapersBReel.apk -o $TMPDIR/$RELEASE/marlin/WallpapersBReel/WallpapersBReel.apk
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/2019-10-06/marlin/WallpapersBReel/lib/arm64/libgdx.so -o $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64/libgdx.so
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/2019-10-06/marlin/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so -o $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
     mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersUsTwo
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/2019-10-06/marlin/WallpapersUsTwo/WallpapersUsTwo.apk -o $TMPDIR/$RELEASE/marlin/WallpapersUsTwo/WallpapersUsTwo.apk
-    
+
     mkdir -p $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018/lib/arm64 $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018/oat/arm64
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/crosshatch/WallpapersBReel2018/WallpapersBReel2018.apk -o $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018/WallpapersBReel2018.apk
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/crosshatch/WallpapersBReel2018/lib/arm64/libgdx.so -o $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2018/lib/arm64/libgdx.so
@@ -34,10 +35,11 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/coral/WallpapersBReel2019/oat/arm64/WallpapersBReel2019.odex -o $TMPDIR/$RELEASE/coral/WallpapersBReel2019/oat/arm64/WallpapersBReel2019.odex
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/coral/WallpapersBReel2019/oat/arm64/WallpapersBReel2019.vdex -o $TMPDIR/$RELEASE/coral/WallpapersBReel2019/oat/arm64/WallpapersBReel2019.vdex
 
-    #mkdir -p $TMPDIR/$RELEASE/coral/PixelLiveWallpaperPrebuilt/oat/arm64
-    #$MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/coral/PixelLiveWallpaperPrebuilt/PixelLiveWallpaperPrebuilt.apk -o $TMPDIR/$RELEASE/coral/PixelLiveWallpaperPrebuilt/PixelLiveWallpaperPrebuilt.apk
-    #$MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/coral/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.odex -o $TMPDIR/$RELEASE/coral/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.odex
-    #$MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/coral/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.vdex -o $TMPDIR/$RELEASE/coral/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.vdex
+    mkdir -p $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/lib/arm64 $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64
+    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/WallpapersBReel2020a.apk -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/WallpapersBReel2020a.apk
+    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/lib/arm64/libgdx.so -o $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2020a/lib/arm64/libgdx.so
+    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex
+    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex
 
   ui_print "Download complete."
   else
@@ -81,10 +83,10 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
   cp -af $WallpapersBReellibgdx $MODPATH/system/product/app/WallpapersBReel/lib/arm64/libgdx.so
   cp -af $WallpapersBReellibgeswallpapers $MODPATH/system/product/app/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
   cp -af $WallpapersBReel $MODPATH/system/product/app/WallpapersBReel/WallpapersBReel.apk
-  
+
   mkdir -p $MODPATH/system/product/app/WallpapersUsTwo
   cp -af $WallpapersUsTwo $MODPATH/system/product/app/WallpapersUsTwo/WallpapersUsTwo.apk
-  
+
   mkdir -p $MODPATH/system/product/app/WallpapersBReel2018/lib/arm64 $MODPATH/system/product/app/WallpapersBReel2018/oat/arm64
   cp -af $WallpapersBReel2018libgdx $MODPATH/system/product/app/WallpapersBReel2018/lib/arm64/libgdx.so
   cp -af $WallpapersBReel2018libwallpapers $MODPATH/system/product/app/WallpapersBReel2018/lib/arm64/libwallpapers-breel-2018-jni.so

@@ -16,6 +16,7 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
     mkdir -p $TMPDIR/$RELEASE/coral/NexusWallpapersStubPrebuilt2019
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/coral/NexusWallpapersStubPrebuilt2019/NexusWallpapersStubPrebuilt2019.apk -o $TMPDIR/$RELEASE/coral/NexusWallpapersStubPrebuilt2019/NexusWallpapersStubPrebuilt2019.apk
 
+    # Live Walls
     mkdir -p $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/taimen/WallpapersBReel2017/WallpapersBReel2017.apk -o $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/WallpapersBReel2017.apk
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/taimen/WallpapersBReel2017/lib/arm64/libgdx.so -o $TMPDIR/$RELEASE/taimen/WallpapersBReel2017/lib/arm64/libgdx.so
@@ -34,10 +35,11 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/coral/WallpapersBReel2019/oat/arm64/WallpapersBReel2019.odex -o $TMPDIR/$RELEASE/coral/WallpapersBReel2019/oat/arm64/WallpapersBReel2019.odex
     $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/coral/WallpapersBReel2019/oat/arm64/WallpapersBReel2019.vdex -o $TMPDIR/$RELEASE/coral/WallpapersBReel2019/oat/arm64/WallpapersBReel2019.vdex
 
-    #mkdir -p $TMPDIR/$RELEASE/coral/PixelLiveWallpaperPrebuilt/oat/arm64
-    #$MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/coral/PixelLiveWallpaperPrebuilt/PixelLiveWallpaperPrebuilt.apk -o $TMPDIR/$RELEASE/coral/PixelLiveWallpaperPrebuilt/PixelLiveWallpaperPrebuilt.apk
-    #$MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/coral/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.odex -o $TMPDIR/$RELEASE/coral/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.odex
-    #$MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/coral/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.vdex -o $TMPDIR/$RELEASE/coral/PixelLiveWallpaperPrebuilt/oat/arm64/PixelLiveWallpaperPrebuilt.vdex
+    mkdir -p $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/lib/arm64 $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64
+    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/WallpapersBReel2020a.apk -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/WallpapersBReel2020a.apk
+    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/lib/arm64/libgdx.so -o $TMPDIR/$RELEASE/crosshatch/WallpapersBReel2020a/lib/arm64/libgdx.so
+    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.odex
+    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION_PIXEL/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex -o $TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/oat/arm64/WallpapersBReel2020a.vdex
 
   ui_print "Download complete."
   else
@@ -75,7 +77,7 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
   cp -af $NexusWallpapersStubPrebuilt2018 $MODPATH/system/product/app/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
   mkdir -p $MODPATH/system/product/app/NexusWallpapersStubPrebuilt2019
   cp -af $NexusWallpapersStubPrebuilt2019 $MODPATH/system/product/app/NexusWallpapersStubPrebuilt2019/NexusWallpapersStubPrebuilt2019.apk
-  
+
   mkdir -p $MODPATH/system/product/app/WallpapersBReel2017/lib/arm64
   cp -af $WallpapersBReel2017libgdx $MODPATH/system/product/app/WallpapersBReel2017/lib/arm64/libgdx.so
   cp -af $WallpapersBReel2017libwallpapers $MODPATH/system/product/app/WallpapersBReel2017/lib/arm64/libwallpapers-breel-2018-jni.so
