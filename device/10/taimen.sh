@@ -7,12 +7,6 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
   ping -q -w1 -c1 google.com &>/dev/null
   if [[ $? -eq 0 ]]; then
     ui_print "Successful connection, start downloading..."
-    mkdir -p $TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt
-    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/2019-10-06/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk -o $TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
-    mkdir -p $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018
-    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/crosshatch/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk -o $TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
-    mkdir -p $TMPDIR/$RELEASE/coral/NexusWallpapersStubPrebuilt2019
-    $MODPATH/curl -k -L https://gitlab.com/thegabrielhoward/pixel-complementary-live-wallpapers/raw/master/$RELEASE/$SECURITY_PATCH_VERSION/coral/NexusWallpapersStubPrebuilt2019/NexusWallpapersStubPrebuilt2019.apk -o $TMPDIR/$RELEASE/coral/NexusWallpapersStubPrebuilt2019/NexusWallpapersStubPrebuilt2019.apk
 
     # Live Walls
     mkdir -p $TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64
@@ -46,10 +40,6 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
     abort "Internet connection is not available. Check the connection and try again."
   fi
 
-  NexusWallpapersStubPrebuilt=$TMPDIR/$RELEASE/marlin/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
-  NexusWallpapersStubPrebuilt2018=$TMPDIR/$RELEASE/crosshatch/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
-  NexusWallpapersStubPrebuilt2019=$TMPDIR/$RELEASE/coral/NexusWallpapersStubPrebuilt2019/NexusWallpapersStubPrebuilt2019.apk
-
   WallpapersBReellibgdx=$TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64/libgdx.so
   WallpapersBReellibgeswallpapers=$TMPDIR/$RELEASE/marlin/WallpapersBReel/lib/arm64/libgeswallpapers-jni.so
   WallpapersBReel=$TMPDIR/$RELEASE/marlin/WallpapersBReel/WallpapersBReel.apk
@@ -72,13 +62,6 @@ ui_print "Downloading module files for '"$DEVICE"' and Android Version '"$RELEAS
   WallpapersBReel2020a=$TMPDIR/$RELEASE/sunfish/WallpapersBReel2020a/WallpapersBReel2020a.apk
 
   ui_print "Installation..."
-
-  mkdir -p $MODPATH/system/product/app/NexusWallpapersStubPrebuilt
-  cp -af $NexusWallpapersStubPrebuilt $MODPATH/system/product/app/NexusWallpapersStubPrebuilt/NexusWallpapersStubPrebuilt.apk
-  mkdir -p $MODPATH/system/product/app/NexusWallpapersStubPrebuilt2018
-  cp -af $NexusWallpapersStubPrebuilt2018 $MODPATH/system/product/app/NexusWallpapersStubPrebuilt2018/NexusWallpapersStubPrebuilt2018.apk
-  mkdir -p $MODPATH/system/product/app/NexusWallpapersStubPrebuilt2019
-  cp -af $NexusWallpapersStubPrebuilt2019 $MODPATH/system/product/app/NexusWallpapersStubPrebuilt2019/NexusWallpapersStubPrebuilt2019.apk
 
   mkdir -p $MODPATH/system/product/app/WallpapersBReel/lib/arm64
   cp -af $WallpapersBReellibgdx $MODPATH/system/product/app/WallpapersBReel/lib/arm64/libgdx.so
